@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PJ Placement & Sales Hub - Coming Soon</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(-45deg, #00bcd4, #0097a7, #1de9b6, #006064);
+        background-size: 400% 400%;
+        animation: gradientBG 10s ease infinite;
+        color: white;
+        text-align: center;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .container {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        width: 90%;
+        max-width: 500px;
+        animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    img {
+        width: 120px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 14px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+    }
+
+    .countdown {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+    }
+
+    .time-box {
+        flex: 1;
+        margin: 5px;
+        background: rgba(255,255,255,0.1);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .time-box span {
+        font-size: 22px;
+        font-weight: bold;
+        display: block;
+    }
+
+    input {
+        width: 70%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    button {
+        padding: 10px 15px;
+        border: none;
+        background: #00e5ff;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #1de9b6;
+    }
+
+    .footer {
+        margin-top: 15px;
+        font-size: 12px;
+        opacity: 0.7;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <!-- Replace with your logo path -->
+    <img src="logo.png" alt="PJ Logo">
+
+    <h1>PJ Placement & Sales Hub</h1>
+    <p>Practical Marketing & Sales Training Institute</p>
+
+    <p>🚀 We're launching something amazing soon!</p>
+
+    <!-- Countdown -->
+    <div class="countdown">
+        <div class="time-box"><span id="days">00</span>Days</div>
+        <div class="time-box"><span id="hours">00</span>Hours</div>
+        <div class="time-box"><span id="minutes">00</span>Min</div>
+        <div class="time-box"><span id="seconds">00</span>Sec</div>
+    </div>
+
+    <!-- Email Form -->
+    <form onsubmit="subscribe(event)">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button type="submit">Notify Me</button>
+    </form>
+
+    <div class="footer">
+        📍 Jhunjhunu | Real Skills • Certification • Career Growth
+    </div>
+</div>
+
+<script>
+    // Set Launch Date (EDIT THIS)
+    const launchDate = new Date("2026-06-01 00:00:00").getTime();
+
+    const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = launchDate - now;
+
+        document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        document.getElementById("minutes").innerText = Math.floor((distance / (1000 * 60)) % 60);
+        document.getElementById("seconds").innerText = Math.floor((distance / 1000) % 60);
+
+        if (distance < 0) {
+            clearInterval(timer);
+            document.querySelector(".countdown").innerHTML = "🚀 We Are Live!";
+        }
+    }, 1000);
+
+    // Email Subscribe (Frontend Only)
+    function subscribe(e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        alert("Thank you! We'll notify you at " + email);
+        document.getElementById("email").value = "";
+    }
+</script>
+
+</body>
+</html>
